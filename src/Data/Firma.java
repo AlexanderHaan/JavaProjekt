@@ -18,8 +18,12 @@ public class Firma {
         return id;
     }
 
+	public String getName() {
+		return name;
+	}
+
     public void addProdukt(Produkt produkt) {
         produkte.add(produkt);
-        produkt.setMadeBy(id);
+        produkt.setMadeBy(this);
     }
 }

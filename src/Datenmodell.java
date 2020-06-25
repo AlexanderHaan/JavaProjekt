@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Datenmodell {
@@ -20,6 +21,136 @@ public class Datenmodell {
         personen = new ArrayList<Person>();
         produkte = new ArrayList<Produkt>();
     }
+
+	/**
+	 * Diese Funktion gibt das Firmennetzwerk
+	 * einer Person aus. Falls diese Person
+	 * nicht existiert, schliesst das Programm.
+	 *
+	 * @param id Id der Person.
+	 */
+	public void printCompanyNetwork(int id) {
+		boolean foundPerson = false;
+		int personIndex = -1;
+		
+		for(int i = 0; i < personen.size(); i++) {
+			if(personen.get(i).getID() == id) {
+				personIndex = i;
+				foundPerson = true;
+				break;
+			}
+		}
+
+		if(!foundPerson) {
+			System.out.println("Die ID ist falsch.");
+			System.exit(0);
+		} else {
+			List<String> firms = new ArrayList<String>();
+			Person person = personen.get(personIndex);
+			for(Produkt p: person.getProdukte()) {
+				if(!firms.contains(p.getCompanyName())) {
+					firms.add(p.getCompanyName());
+				}
+			}
+			for(Person friend: person.getFriends()) {
+				for(Produkt p: friend.getProdukte()) {
+					if(!firms.contains(p.getCompanyName())) {
+						firms.add(p.getCompanyName());
+					}
+				}
+			}
+
+			Collections.sort(firms, String.CASE_INSENSITIVE_ORDER);
+			for(int i = 0; i < firms.size(); i++) {
+				if(i == firms.size() - 1) {
+					System.out.print(firms.get(i));
+				} else {
+					System.out.print(firms.get(i) + ", ");
+				}
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * Diese Funktion gibt das Produktnetzwerk von 
+	 * einer Person aus. Falls diese Person nicht existiert
+	 * dann wir das Programm abgebrochen.
+	 *
+	 * @param id Id der Person.
+	 */
+	public void printProduktNetwork(int id) {
+		boolean foundPerson = false;
+		int personIndex = -1;
+
+		for(int i = 0; i < personen.size(); i++) {
+			if(personen.get(i).getID() == id) {
+				personIndex = i;
+				foundPerson = true;
+				break;
+			}
+		}
+
+		if(!foundPerson) {
+			System.out.println("Die ID ist falsch.");
+			System.exit(0);
+		}
+		else {
+			List<String> prod = new ArrayList<String>();
+			Person person = personen.get(personIndex);
+			for(Produkt p: person.getProdukte()) {
+				if(!prod.contains(p.getName())) {
+					prod.add(p.getName());
+				}
+			}
+			for(Person friend: person.getFriends()) {
+				for(Produkt p: friend.getProdukte()) {
+					if(!prod.contains(p.getName())) {
+						prod.add(p.getName());
+					}
+				}
+			}
+
+			Collections.sort(prod, String.CASE_INSENSITIVE_ORDER);
+			for(int i = 0; i < prod.size(); i++) {
+				if(i == prod.size() - 1) {
+					System.out.print(prod.get(i));
+				} else {
+					System.out.print(prod.get(i) + ", ");
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	/**
+	 * Such in der Produktliste nach dem Produkt,
+	 * welches den String beinhaltet und gibt deren
+	 * Details aus.
+	 *
+	 * @param produktName Das ist der einzulesene String.
+	 */
+	public void searchProdukt(String produktName) {
+		for(int i = 0; i < produkte.size(); i++) {
+			if(produkte.get(i).getName().toLowerCase().contains(produktName.toLowerCase())) {
+				produkte.get(i).printDetails();
+			}
+		}
+	}
+
+	/**
+	 * Sucht in der Personenliste nach der Person die 
+	 * den String beihnaltet und gibt deren Details aus.
+	 *
+	 * @param personName Das ist der einzulesene String.
+	 */
+	public void searchPerson(String personName) {
+		for(int i = 0; i < personen.size(); i++) {
+			if(personen.get(i).getName().toLowerCase().contains(personName.toLowerCase())) {
+				personen.get(i).printDetails();
+			}
+		}
+	}
 
     /**
      * Liest eine Datei und schreibt die Daten in die Instanz

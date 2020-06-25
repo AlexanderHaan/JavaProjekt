@@ -22,6 +22,19 @@ public class Person {
         return id;
     }
 
+	public String getName() {
+		return name;
+	}
+
+	public void printDetails() {
+		System.out.println("ID:                              " + id);
+		System.out.println("Name:                            " + name);
+		System.out.println("Geschlecht:                      " + geschlecht);
+		System.out.println("Anzahl der Freunde:              " + freunde.size());
+		System.out.println("Anzahl der gekauften Produkte:   " + produkte.size());
+		System.out.println();
+	}
+
     public void addFriend(Person person) {
         freunde.add(person);
     }
@@ -29,4 +42,12 @@ public class Person {
     public void boughtProdukt(Produkt produkt) {
         produkte.add(produkt);
     }
+
+	public List<Produkt> getProdukte() {
+		return produkte;
+	}
+
+	public List<Person> getFriends() {
+		return freunde;
+	}
 }
