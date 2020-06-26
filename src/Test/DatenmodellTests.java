@@ -42,12 +42,12 @@ public class DatenmodellTests {
 			"Geschlecht:                      Male\n"+
 			"Anzahl der Freunde:              4\n"+
 			"Anzahl der gekauften Produkte:   1\n"+
-            "\n"+
-            "ID:                              70\n"+
-            "Name:                            Roger Walker\n"+
-            "Geschlecht:                      Male\n"+
-            "Anzahl der Freunde:              6\n"+
-            "Anzahl der gekauften Produkte:   1\n";
+			"\n"+
+			"ID:                              70\n"+
+			"Name:                            Roger Walker\n"+
+			"Geschlecht:                      Male\n"+
+			"Anzahl der Freunde:              6\n"+
+			"Anzahl der gekauften Produkte:   1\n";
 		assertEquals(expectedOutput, outContent.toString());
 	}
 }

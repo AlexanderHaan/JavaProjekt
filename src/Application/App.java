@@ -3,8 +3,8 @@ package Application;
 public class App {
 	static int mode = 0;
 	static String argument;
-    public static void main(String[] args) {
-        /* Before we import the file we check if the arguments are right. */
+	public static void main(String[] args) {
+		/* Before we import the file we check if the arguments are right. */
 		if (args.length == 0 && args.length > 1) {
 			System.out.println("There are too few or too much arguments");
 			System.exit(0); 
@@ -15,8 +15,8 @@ public class App {
 				System.exit(0); 
 			}
 		}
-        Datenmodell database = new Datenmodell();
-        database.readDataFromFile("movieproject2020.db");
+		Datenmodell database = new Datenmodell();
+		database.readDataFromFile("movieproject2020.db");
 
 		// Select mode and five the argument
 		switch(mode) {
@@ -33,7 +33,7 @@ public class App {
 				database.printCompanyNetwork(Integer.parseInt(argument));
 				break;
 		}
-    }
+	}
 
 	/**
 	 * Diese Funktion liest das Argument und �berpr�ft ob, 
