@@ -1,14 +1,14 @@
 package Application.Data;
 
 public class Produkt {
-    private int id;
-    private String name;
-    private Firma hersteller;
+	private int id;
+	private String name;
+	private Firma hersteller;
 
-    public Produkt(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public Produkt(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 	public void printDetails() {
 		System.out.println("ID             : " + id);
@@ -18,19 +18,19 @@ public class Produkt {
 		System.out.println();
 	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
 	public String getCompanyName() {
 		return hersteller.getName();
 	}
 
-    public int getID() {
-        return id;
-    }
+	public int getID() {
+		return id;
+	}
 
-    public void setMadeBy(Firma hersteller) {
+	public void setMadeBy(Firma hersteller) {
 		this.hersteller = hersteller;
-    }
+	}
 }
