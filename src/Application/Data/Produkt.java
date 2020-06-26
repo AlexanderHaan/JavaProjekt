@@ -1,4 +1,4 @@
-package Data;
+package Application.Data;
 
 public class Produkt {
     private int id;

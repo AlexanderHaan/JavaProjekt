@@ -1,6 +1,8 @@
-import Data.Firma;
-import Data.Person;
-import Data.Produkt;
+package Application;
+
+import Application.Data.Firma;
+import Application.Data.Person;
+import Application.Data.Produkt;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -274,6 +276,8 @@ public class Datenmodell {
      * @param line Das ist der einzulesene String.
      */
     private void addFriendship(String line) {
+		// TODO Zu viele Freunde
+		// TODO am Ende Freundschaften überprüfen
         int id1, id2;
         int index1 = -1, index2 = -1;
 
