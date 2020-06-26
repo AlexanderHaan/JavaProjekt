@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DatenmodellTests {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -18,7 +18,7 @@ public class DatenmodellTests {
 	private Datenmodell dataModel = new Datenmodell();
 
 	public DatenmodellTests() {
-		dataModel.readDataFromFile("datenTest.db");
+		dataModel.readDataFromFile("movieproject2020.db");
 	}
 
 	@Before
@@ -35,9 +35,20 @@ public class DatenmodellTests {
 
 	@Test
 	public void testSearchPerson() {
-		dataModel.searchPerson("Alex");
-		//Path path;
-		//String expectedOutput = Files.readString(path);
+		dataModel.searchPerson("Roger");
+		String expectedOutput = 
+			"ID:                              53\n"+
+			"Name:                            Jaime Rogers\n"+
+			"Geschlecht:                      Male\n"+
+			"Anzahl der Freunde:              4\n"+
+			"Anzahl der gekauften Produkte:   1\n"+
+            "\n"+
+            "ID:                              70\n"+
+            "Name:                            Roger Walker\n"+
+            "Geschlecht:                      Male\n"+
+            "Anzahl der Freunde:              6\n"+
+            "Anzahl der gekauften Produkte:   1\n";
+		assertEquals(expectedOutput, outContent.toString());
 	}
 }
 //*/
