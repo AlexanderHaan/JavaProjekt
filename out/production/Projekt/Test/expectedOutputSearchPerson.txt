@@ -1,7 +1,0 @@
-ID:                              1
-Name:                            Alex Haan
-Geschlecht:                      Male
-Anzahl der Freunde:              0
-Anzahl der gekauften Produkte:   0
-
-

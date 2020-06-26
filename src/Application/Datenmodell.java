@@ -193,10 +193,21 @@ public class Datenmodell {
 					}
 				}
 			}
+			checkAllFriendships();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("\nFile \"movieproject2020.db\" must be in same directory of \"Datenmodell\"-Class");
+		}
+	}
+
+	private void checkAllFriendships() {
+		for(Person p : personen) {
+			for(Person friend : p.getFriends()) {
+				if(!friend.getFriends().contains(p)) {
+					p.getFriends().remove(friend);
+				}
+			}
 		}
 	}
 
@@ -276,8 +287,6 @@ public class Datenmodell {
 	 * @param line Das ist der einzulesene String.
 	 */
 	private void addFriendship(String line) {
-		// TODO Zu viele Freunde
-		// TODO am Ende Freundschaften überprüfen
 		int id1, id2;
 		int index1 = -1, index2 = -1;
 
@@ -296,7 +305,6 @@ public class Datenmodell {
 
 		if (index1 != -1 && index2 != -1) {
 			personen.get(index1).addFriend(personen.get(index2));
-			personen.get(index2).addFriend(personen.get(index1));
 		}
 	}
 
