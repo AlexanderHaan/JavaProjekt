@@ -1,4 +1,3 @@
-///*
 package Test;
 
 import Application.Datenmodell;
@@ -9,9 +8,7 @@ import java.io.PrintStream;
 
 public class DatenmodellTests {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 	private final PrintStream originalOut = System.out;
-	private final PrintStream originalErr = System.err;
 	private Datenmodell dataModel = new Datenmodell();
 
 	public DatenmodellTests() {
@@ -27,7 +24,6 @@ public class DatenmodellTests {
 	@Test
 	public void testSearchPerson() {
 		System.setOut(new PrintStream(outContent));
-		System.setErr(new PrintStream(errContent));
 		String s = System.lineSeparator();
 		dataModel.searchPerson("Roger");
 		String expectedOutput = 
@@ -45,13 +41,11 @@ public class DatenmodellTests {
 			s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
 		System.setOut(originalOut);
-		System.setErr(originalErr);
 	}
 
 	@Test
 	public void testSearchProdukt() {
 		System.setOut(new PrintStream(outContent));
-		System.setErr(new PrintStream(errContent));
 		String s = System.lineSeparator();
 		dataModel.searchProdukt("iP");
 		String expectedOutput = 
@@ -72,32 +66,26 @@ public class DatenmodellTests {
 			s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
 		System.setOut(originalOut);
-		System.setErr(originalErr);
 	}
 
 	@Test
 	public void testPrintProduktNetwork() {
 		System.setOut(new PrintStream(outContent));
-		System.setErr(new PrintStream(errContent));
 		String s = System.lineSeparator();
 		dataModel.printProduktNetwork(27);
 		String expectedOutput = 
 			"Google Nexus 5, Google Nexus 7, iPad, iPad Mini, iPhone, MacBook Air, Samsung ChromeBook, Samsung Galaxy 5, Samsung Galaxy Tab 3"+s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
 		System.setOut(originalOut);
-		System.setErr(originalErr);
 	}
 
 	@Test
 	public void testPrintCompanyNetwork() {
 		System.setOut(new PrintStream(outContent));
-		System.setErr(new PrintStream(errContent));
 		String s = System.lineSeparator();
 		dataModel.printCompanyNetwork(27);
 		String expectedOutput = "Apple, Google, Samsung"+s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
 		System.setOut(originalOut);
-		System.setErr(originalErr);
 	}
 }
-//*/
