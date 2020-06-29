@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Datenmodell {
@@ -49,11 +50,7 @@ public class Datenmodell {
 		} else {
 			List<String> firms = new ArrayList<String>();
 			Person person = personen.get(personIndex);
-			for(Produkt p: person.getProdukte()) {
-				if(!firms.contains(p.getCompanyName())) {
-					firms.add(p.getCompanyName());
-				}
-			}
+
 			for(Person friend: person.getFriends()) {
 				for(Produkt p: friend.getProdukte()) {
 					if(!firms.contains(p.getCompanyName())) {
@@ -62,12 +59,18 @@ public class Datenmodell {
 				}
 			}
 
+			for (Produkt p : person.getProdukte()) {
+				if (firms.contains(p.getCompanyName())) {
+					firms.remove(p.getCompanyName());
+				}
+			}
+
 			Collections.sort(firms, String.CASE_INSENSITIVE_ORDER);
 			for(int i = 0; i < firms.size(); i++) {
 				if(i == firms.size() - 1) {
 					System.out.print(firms.get(i));
 				} else {
-					System.out.print(firms.get(i) + ", ");
+					System.out.print(firms.get(i) + ",");
 				}
 			}
 			System.out.println();
@@ -100,11 +103,7 @@ public class Datenmodell {
 		else {
 			List<String> prod = new ArrayList<String>();
 			Person person = personen.get(personIndex);
-			for(Produkt p: person.getProdukte()) {
-				if(!prod.contains(p.getName())) {
-					prod.add(p.getName());
-				}
-			}
+
 			for(Person friend: person.getFriends()) {
 				for(Produkt p: friend.getProdukte()) {
 					if(!prod.contains(p.getName())) {
@@ -113,12 +112,14 @@ public class Datenmodell {
 				}
 			}
 
+			prod.removeAll((new HashSet(person.getProdukte())));
+
 			Collections.sort(prod, String.CASE_INSENSITIVE_ORDER);
 			for(int i = 0; i < prod.size(); i++) {
 				if(i == prod.size() - 1) {
 					System.out.print(prod.get(i));
 				} else {
-					System.out.print(prod.get(i) + ", ");
+					System.out.print(prod.get(i) + ",");
 				}
 			}
 			System.out.println();
