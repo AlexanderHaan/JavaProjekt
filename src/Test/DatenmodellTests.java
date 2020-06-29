@@ -74,7 +74,7 @@ public class DatenmodellTests {
 		String s = System.lineSeparator();
 		dataModel.printProduktNetwork(27);
 		String expectedOutput = 
-			"Google Nexus 5, Google Nexus 7, iPad, iPad Mini, iPhone, MacBook Air, Samsung ChromeBook, Samsung Galaxy 5, Samsung Galaxy Tab 3"+s;
+			"Google Nexus 7,iPad,iPad Mini,iPhone,MacBook Air,Samsung ChromeBook,Samsung Galaxy 5,Samsung Galaxy Tab 3"+s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
 		System.setOut(originalOut);
 	}
@@ -83,8 +83,8 @@ public class DatenmodellTests {
 	public void testPrintCompanyNetwork() {
 		System.setOut(new PrintStream(outContent));
 		String s = System.lineSeparator();
-		dataModel.printCompanyNetwork(27);
-		String expectedOutput = "Apple, Google, Samsung"+s;
+		dataModel.printCompanyNetwork(45);
+		String expectedOutput = "Apple,Google,Samsung"+s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
 		System.setOut(originalOut);
 	}
