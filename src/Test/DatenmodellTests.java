@@ -1,6 +1,8 @@
 package Test;
 
 import Application.Datenmodell;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import java.io.ByteArrayOutputStream;
@@ -10,6 +12,7 @@ public class DatenmodellTests {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final PrintStream originalOut = System.out;
 	private Datenmodell dataModel = new Datenmodell();
+	private String s = System.lineSeparator();
 
 	public DatenmodellTests() {
 		dataModel.readDataFromFile("movieproject2020.db");
@@ -21,10 +24,18 @@ public class DatenmodellTests {
 	 * this tests wil also fail
 	 */
 
+	@BeforeEach
+	public void before() {
+		System.setOut(new PrintStream(outContent));
+	}
+
+	@AfterEach
+	public void after() {
+		System.setOut(originalOut);
+	}
+
 	@Test
 	public void testSearchPerson() {
-		System.setOut(new PrintStream(outContent));
-		String s = System.lineSeparator();
 		dataModel.searchPerson("Roger");
 		String expectedOutput = 
 			"ID:                              53"+s+
@@ -40,13 +51,10 @@ public class DatenmodellTests {
 			"Anzahl der gekauften Produkte:   1"+s+
 			s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
-		System.setOut(originalOut);
 	}
 
 	@Test
 	public void testSearchProdukt() {
-		System.setOut(new PrintStream(outContent));
-		String s = System.lineSeparator();
 		dataModel.searchProdukt("iP");
 		String expectedOutput = 
 			"ID             : 203"+s+
@@ -65,27 +73,20 @@ public class DatenmodellTests {
 			"Hersteller-Name: Apple"+s+
 			s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
-		System.setOut(originalOut);
 	}
 
 	@Test
 	public void testPrintProduktNetwork() {
-		System.setOut(new PrintStream(outContent));
-		String s = System.lineSeparator();
 		dataModel.printProduktNetwork(27);
 		String expectedOutput = 
 			"Google Nexus 7,iPad,iPad Mini,iPhone,MacBook Air,Samsung ChromeBook,Samsung Galaxy 5,Samsung Galaxy Tab 3"+s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
-		System.setOut(originalOut);
 	}
 
 	@Test
 	public void testPrintCompanyNetwork() {
-		System.setOut(new PrintStream(outContent));
-		String s = System.lineSeparator();
 		dataModel.printCompanyNetwork(45);
 		String expectedOutput = "Apple,Google,Samsung"+s;
 		Assertions.assertEquals(expectedOutput, outContent.toString());
-		System.setOut(originalOut);
 	}
 }
